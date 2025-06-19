@@ -7,13 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="13.0.1" />
-    <PackageReference Include="DotNetty.Transport" Version="0.7.6" />
-    <PackageReference Include="Google.Protobuf" Version="3.29.2" />
+    <Compile Remove="Data\**" />
+    <EmbeddedResource Remove="Data\**" />
+    <None Remove="Data\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\" />
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="DotNetty.Transport" Version="0.7.6" />
+    <PackageReference Include="Google.Protobuf" Version="3.29.2" />
   </ItemGroup>
 
 </Project>
