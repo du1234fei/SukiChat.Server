@@ -74,6 +74,15 @@ namespace ChatServer.Main.MessageOperate
                 .ForMember(grm => grm.SolvedTime, opt => opt.MapFrom(gr => gr.SolveTime == null ? string.Empty: gr.SolveTime.ToString()));
             #endregion
 
+            #region Group + GroupMessage
+
+            CreateMap<Group, GroupMessage>()
+                .ForMember(gm => gm.CreateTime, opt => opt.MapFrom(g => g.CreateTime.ToString()))
+                .ForMember(gm => gm.Description, opt => opt.MapFrom(g => g.Description ?? string.Empty))
+                .ForMember(gm => gm.GroupId, opt => opt.MapFrom(g => g.Id));
+
+            #endregion
+
             #region FriendDelete + FriendDeleteMessage
             CreateMap<FriendDelete, FriendDeleteMessage>()
                 .ForMember(fdm => fdm.Time, opt => opt.MapFrom(fd => fd.Time.ToString()))
@@ -120,6 +129,14 @@ namespace ChatServer.Main.MessageOperate
                 .ForMember(gcm => gcm.RetractTime, opt => opt.MapFrom(cg => cg.RetractTime.ToString()));
             #endregion
 
+            #region ChatPrivateDetailMessage + ChatPrivateDetail
+            CreateMap<ChatPrivateDetail, ChatPrivateDetailMessage>().ReverseMap();
+            #endregion
+
+            #region ChatGroupDetailMessage + ChatGroupDetail
+            CreateMap<ChatGroupDetail, ChatGroupDetailMessage>().ReverseMap();
+            #endregion
+
             #region GroupRelation + EnterGroupMessage
             CreateMap<GroupRelation, EnterGroupMessage>()
                 .ForMember(egm => egm.JoinTime, opt => opt.MapFrom(gr => gr.JoinTime.ToString()))
@@ -134,9 +151,13 @@ namespace ChatServer.Main.MessageOperate
                 .ForMember(ugm => ugm.GroupType, opt => opt.MapFrom(ug => ug.GroupType));
             #endregion
 
+            #region JoinGroupRequestFromClient + GroupRequest
 
-            CreateMap<ChatPrivateDetail, ChatPrivateDetailMessage>();
-            CreateMap<ChatGroupDetail, ChatGroupDetailMessage>();
+            CreateMap<JoinGroupRequestFromClient, GroupRequest>()
+                .ForMember(gr => gr.UserFromId, opt => opt.MapFrom(g => g.UserId))
+                .ForMember(gr => gr.RequestTime, opt => opt.Ignore());
+
+            #endregion
         }
     }
 }

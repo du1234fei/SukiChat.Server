@@ -31,6 +31,12 @@ namespace ChatServer.Main.MessageOperate.Server
                 .AddMessage<UpdateGroupLastChatIdRequest>()
                 .AddMessage<FileRequest>()
 
+                .AddMessage<GetFriendChatListRequest>()
+                .AddMessage<GetGroupChatListRequest>()
+
+                .AddMessage<GetFriendChatDetailListRequest>()
+                .AddMessage<GetGroupChatDetailListRequest>()
+
                 .AddMessage<ChatGroupDeleteRequest>()
                 .AddMessage<ChatPrivateDeleteRequest>()
                 .AddMessage<ChatGroupRetractRequest>()
